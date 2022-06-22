@@ -229,11 +229,21 @@ func (c *blockContext) newDenseInfoContext(di *protobuf.DenseInfo) *denseInfoCon
 }
 
 func (dic *denseInfoContext) decodeInfo(i int) *Info {
-	dic.version = dic.versions[i] + dic.version
-	dic.uid = dic.uids[i] + dic.uid
-	dic.timestamp = dic.timestamps[i] + dic.timestamp
-	dic.changeset = dic.changesets[i] + dic.changeset
-	dic.userSid = dic.userSids[i] + dic.userSid
+	if len(dic.versions) > 0 {
+		dic.version = dic.versions[i] + dic.version
+	}
+	if len(dic.uids) > 0 {
+		dic.uid = dic.uids[i] + dic.uid
+	}
+	if len(dic.timestamps) > 0 {
+		dic.timestamp = dic.timestamps[i] + dic.timestamp
+	}
+	if len(dic.changesets) > 0 {
+		dic.changeset = dic.changesets[i] + dic.changeset
+	}
+	if len(dic.userSids) > 0 {
+		dic.userSid = dic.userSids[i] + dic.userSid
+	}
 
 	info := &Info{
 		Version:   dic.version,
